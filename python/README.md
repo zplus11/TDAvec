@@ -36,14 +36,14 @@ You can also install the current verion from the GitHub with
 
     pip install -e "git+https://github.com/uislambekov/TDAvec.git#egg=tdavec&subdirectory=python"
 
-Alternatively, you can install it from the source. In order to do this clone mentioned above github repository and run the followin commants from the project root directory:
+Alternatively, you can install it from the source. In order to do this clone the above mentioned github repository and run the following commands from the project root directory:
 
 
     pip install numpy==1.26.4 ripser==0.6.8
     python3 setup.py build_ext --inplace
     pip install .
 
-after that you should have `tdavec` package installed in your environment. 
+After that you should have `tdavec` package installed in your environment. 
 
 
 In order to check if the intallation process was completed, you can run python and evaluate the following lines:
@@ -55,7 +55,7 @@ This function will create a simple point cloud, build a persistence diagram, cac
 
 # Usage
 
-In this section some simple example of package usage is demonstrated.
+In this section some simple examples of package usage are demonstrated.
 
 We will start with loading `TDAvec` library and some other packages:
 
@@ -67,7 +67,7 @@ We will start with loading `TDAvec` library and some other packages:
     import pandas as pd
     import numpy as np
 
-As a sample data we will work with set of point clouds, that represent defomed elipses with randomly selected squize rations:
+As a sample data we will work with set of point clouds, that represent deformed ellipses with randomly selected squeeze ratios:
 
     np.random.seed(42)
     epsList = np.random.uniform(low = 0, high = 1, size = 500)
@@ -85,7 +85,7 @@ Here are some examples:
 
 ![Point clouds](https://raw.githubusercontent.com/uislambekov/TDAvec/main/python/readme_figs/clouds.png)
 
-In order to generate Persistence Diagrams one need to create TDAvectorizer object and fit fit it:
+In order to generate Persistence Diagrams one needs to create TDAvectorizer object and fit it:
 
     v = TDAvectorizer()
     v.setParams({"scale":np.linspace(0, 2, 10)})
@@ -118,7 +118,7 @@ Once TDAvectorizer object is fitted, one can calculate vectorization by calling 
 
 These vectorizations can be used as predictors for ML problem, whose goal is to predict the original deformation parameter. We will use a simple `sklearn.LinearRegression` model to solve the problem
 
-Here is a simple function the for any given set of predictors creates the model, solves it, and retirns the results:
+Here is a simple function for any given set of predictors that creates the model, solves it, and returns the results:
 
     def makeSim(X, y=epsList):
         Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, train_size=0.8, random_state=42)
@@ -158,6 +158,6 @@ Here is the table of calculated accuracies:
 | pes      | 0.989 | 0.717 |
 | pi       | 0.986 | 0.547 |
 
-As you can see, majority off them are very close to 1, which means that the models are pretty accurate. Presented belowe truth/predictions scatter plots confirm this conslusion:
+As you can see, majority of them are very close to 1, which means that the models are pretty accurate. Presented below truth/prediction scatter plots confirm this conclusion:
 
 ![Comparison](./readme_figs/comparison.png)
